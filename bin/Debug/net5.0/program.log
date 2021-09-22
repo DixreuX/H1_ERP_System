@@ -1,0 +1,11 @@
+[%22-09-2021 10:37:04][INFO] Programmet er startet
+[%22-09-2021 10:37:04][INFO] New Line virker
+[%22-09-2021 10:37:04][ERROR] Det opstod en fejl!
+[%22-09-2021 10:53:01][INFO] Programmet er startet
+[%22-09-2021 10:53:01][INFO] New Line virker
+[%22-09-2021 10:53:01][ERROR] Det opstod en fejl!
+[%22-09-2021 10:53:05][ERROR] Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseInt32(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at H1_ERP_System.Program.Main(String[] args) in C:\Users\Bruger 1\OneDrive\Dokumenter\SKOLEPRAKTIK\HOVEDFORLØB\H1\ERP-Project\H1_ERP_System\Program.cs:line 21

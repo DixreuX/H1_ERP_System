@@ -1,0 +1,10 @@
+is_global = true
+build_property.TargetFramework = net5.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.PublishSingleFile = 
+build_property.IncludeAllContentForSelfExtract = 
+build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
+build_property.RootNamespace = H1_ERP_System
+build_property.ProjectDir = C:\Users\Danny\OneDrive\Dokumenter\SKOLEPRAKTIK\HOVEDFORLØB\H1\ERP-Project\H1_ERP_System\

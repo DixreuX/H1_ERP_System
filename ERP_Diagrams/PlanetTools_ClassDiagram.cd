@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="H1_ERP_System.Program">
+    <Position X="0.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.Logger">
+    <Position X="0.5" Y="2" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>ERP_Logs\Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.MainInterface">
+    <Position X="4.25" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAEAAAQAAAAAABAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ERP_UserInterface\MainInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.PlanetTools_Database">
+    <Position X="8" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAEACEAAAAAAAIAAAAEAEAhAoAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>ERP_Database\PlanetTools_Database.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
