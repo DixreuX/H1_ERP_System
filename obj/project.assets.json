@@ -1163,11 +1163,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Danny\\OneDrive\\Dokumenter\\SKOLEPRAKTIK\\HOVEDFORLØB\\H1\\ERP-Project\\H1_ERP_System\\H1_ERP_System.csproj",
+      "projectUniqueName": "C:\\Users\\Danny\\Source\\Repos\\H1_ERP_System\\H1_ERP_System.csproj",
       "projectName": "H1_ERP_System",
-      "projectPath": "C:\\Users\\Danny\\OneDrive\\Dokumenter\\SKOLEPRAKTIK\\HOVEDFORLØB\\H1\\ERP-Project\\H1_ERP_System\\H1_ERP_System.csproj",
+      "projectPath": "C:\\Users\\Danny\\Source\\Repos\\H1_ERP_System\\H1_ERP_System.csproj",
       "packagesPath": "C:\\Users\\Danny\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Danny\\OneDrive\\Dokumenter\\SKOLEPRAKTIK\\HOVEDFORLØB\\H1\\ERP-Project\\H1_ERP_System\\obj\\",
+      "outputPath": "C:\\Users\\Danny\\Source\\Repos\\H1_ERP_System\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
