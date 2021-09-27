@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bruger 1\\Source\\Repos\\H1_ERP_System\\H1_ERP_System.csproj": {}
+    "C:\\Users\\Bruger 1\\source\\repos\\H1_ERP_System\\H1_ERP_System.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bruger 1\\Source\\Repos\\H1_ERP_System\\H1_ERP_System.csproj": {
+    "C:\\Users\\Bruger 1\\source\\repos\\H1_ERP_System\\H1_ERP_System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruger 1\\Source\\Repos\\H1_ERP_System\\H1_ERP_System.csproj",
+        "projectUniqueName": "C:\\Users\\Bruger 1\\source\\repos\\H1_ERP_System\\H1_ERP_System.csproj",
         "projectName": "H1_ERP_System",
-        "projectPath": "C:\\Users\\Bruger 1\\Source\\Repos\\H1_ERP_System\\H1_ERP_System.csproj",
+        "projectPath": "C:\\Users\\Bruger 1\\source\\repos\\H1_ERP_System\\H1_ERP_System.csproj",
         "packagesPath": "C:\\Users\\Bruger 1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruger 1\\Source\\Repos\\H1_ERP_System\\obj\\",
+        "outputPath": "C:\\Users\\Bruger 1\\source\\repos\\H1_ERP_System\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Bruger 1\\AppData\\Roaming\\NuGet\\NuGet.Config",

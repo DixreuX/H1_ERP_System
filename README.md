@@ -10,6 +10,8 @@
   It is our main project for Hovedforløb 1 at TECHCOLLEGE and it combines some of our subjects like 
   Basic Programming, Object Oriented Programming and Database Programming. 
 
+  Username: Admin
+  Password: admin
 
   GOALS:
 
@@ -52,4 +54,6 @@
   HISTORY:
 
   [22-09-2021] Moved my CreateTables and SeedData methods to a script instead, wrote this ReadMe and made the first commit to GitHub
+
+  [27-09-2021] Added a login screen, expanded my database script and fixed several issues
 

@@ -59,7 +59,7 @@ namespace H1_ERP_System
 
             dbConnection.Open();
 
-            string script = File.ReadAllText(@"..\..\..\ERP_Database\ERP_Script_SQLite.sql");
+            string script = File.ReadAllText(@"C:\Users\Bruger 1\source\repos\H1_ERP_System\ERP_Database\ERP_Script_SQLite.sql");
             dbCommand = new SQLiteCommand(script, dbConnection);
             dbCommand.ExecuteNonQuery();
 
@@ -75,7 +75,7 @@ namespace H1_ERP_System
         {
             dbConnection.Open();
 
-                Console.WriteLine("\n                                    Products Table (SELECT * FROM Products ORDER BY ProductID ASC)");
+                Console.WriteLine("\n                                                         Products Table ");
 
                 string productHeaders = string.Format(
                        "\n  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |\n\n",
@@ -83,7 +83,7 @@ namespace H1_ERP_System
 
                 WriteLine(productHeaders);
 
-                string readTables = "SELECT * FROM Products ORDER BY ProductID ASC";
+                string readTables = "SELECT * FROM Products";
                 dbCommand = new SQLiteCommand(readTables, dbConnection);
                 dbReader = dbCommand.ExecuteReader();
                
@@ -94,11 +94,34 @@ namespace H1_ERP_System
             dbConnection.Close();
         }
 
+        public void PrintClients()
+        {
+            dbConnection.Open();
+
+            Console.WriteLine("\n                                                         Clients Table ");
+
+            string productHeaders = string.Format(
+                   "\n  {0,12} |  {1,17} |  {2,22} |  {3,12} |\n\n",
+                   "ClientID", "Client_Number", "Client_LastOrderID", "Client_LastOrderDate");
+
+            WriteLine(productHeaders);
+
+            string readTables = "SELECT * FROM Clients";
+            dbCommand = new SQLiteCommand(readTables, dbConnection);
+            dbReader = dbCommand.ExecuteReader();
+
+            while (dbReader.Read())
+                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |", dbReader["ClientID"], dbReader["Client_Number"], dbReader["Client_LastOrderID"], dbReader["Client_LastOrderDate"]);
+            WriteLine("\n  ------------------------------------------------------------------------------------------------------------------------------------------");
+
+            dbConnection.Close();
+        }
+
         public void PrintExtProducts()
         {
             dbConnection.Open();
             
-                Console.WriteLine("\n                            Vendor Products Table (SELECT * FROM VendorProducts ORDER BY VendorProductID ASC)");
+                Console.WriteLine("\n                                                       Vendor Products Table ");
 
                 string extProductHeaders = string.Format(
                        "\n\n  {0,12} |  {1,17} |  {2,22} |  {3,12} | \n\n",
@@ -106,7 +129,7 @@ namespace H1_ERP_System
 
                 WriteLine(extProductHeaders);
 
-                string readTable = "SELECT * FROM VendorProducts ORDER BY VendorProductID ASC";
+                string readTable = "SELECT * FROM VendorProducts";
                 dbCommand = new SQLiteCommand(readTable, dbConnection);
                 dbReader = dbCommand.ExecuteReader();
                 while (dbReader.Read())
@@ -120,7 +143,7 @@ namespace H1_ERP_System
         {
             dbConnection.Open();
 
-                Console.WriteLine("\n                                        Person Table (SELECT * FROM Person ORDER BY LastName DESC)");
+                Console.WriteLine("\n                                                            Person Table");
 
                 string personHeaders = string.Format(
                        "\n\n  {0,12} |  {1,17} |  {2,22} |\n\n",
@@ -128,7 +151,7 @@ namespace H1_ERP_System
 
                 WriteLine(personHeaders);
 
-                string readTable = "SELECT * FROM Persons ORDER BY Person_LastName DESC";
+                string readTable = "SELECT * FROM Persons";
                 dbCommand = new SQLiteCommand(readTable, dbConnection);
                 dbReader = dbCommand.ExecuteReader();
                 while (dbReader.Read())

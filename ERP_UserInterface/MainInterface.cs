@@ -11,6 +11,7 @@ namespace H1_ERP_System
     {
         // This creates a database object which i use to access CRUD operations
         PlanetTools_Database PTDB = new PlanetTools_Database();
+        LoginModule LM = new LoginModule();
 
 
         // Boolean that controls if the interface is running
@@ -26,26 +27,30 @@ namespace H1_ERP_System
 
         public void Interface()
         {
+            LM.Login();
 
             while (InterfaceIsRunning == true)
             {
                 // The next couple of lines turns the console text green and clears the console when the loop repeats.
                 ForegroundColor = ConsoleColor.Green;
                 Clear();
-                WarehouseHeader();
+                InterfaceHeader();
 
                 PTDB.CheckIfDBExists();
                 PTDB.PrintProducts();
-                //PTDB.PrintExtProducts();
-                //PTDB.PrintPerson();
+                PTDB.PrintClients();
 
-               
+                PTDB.PrintExtProducts();
+                PTDB.PrintPerson();
+
+
 
 
                 // Displays the user commands
                 User_Commands();
-                PTDB.InsertRow();
-                PTDB.DeleteRowByID();
+
+                //PTDB.InsertRow();
+                //PTDB.DeleteRowByID();
 
 
                 // Here is where the user can interact and peform CRUD oprations.
@@ -108,7 +113,7 @@ namespace H1_ERP_System
                 WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------");
             }
 
-            void WarehouseHeader()
+            void InterfaceHeader()
             {
                 WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------");
                 WriteLine("                                                           Planet Tools | ERP system");
