@@ -59,7 +59,7 @@ namespace H1_ERP_System
 
             dbConnection.Open();
 
-            string script = File.ReadAllText(@"C:\Users\Danny\OneDrive\Dokumenter\SKOLEPRAKTIK\HOVEDFORLØB\H1\ERP-Project\H1_ERP_System\ERP_Database\ERP_Script_SQLite.sql");
+            string script = File.ReadAllText(@"..\..\..\ERP_Database\ERP_Script_SQLite.sql");
             dbCommand = new SQLiteCommand(script, dbConnection);
             dbCommand.ExecuteNonQuery();
 
@@ -88,7 +88,7 @@ namespace H1_ERP_System
                 dbReader = dbCommand.ExecuteReader();
                
                 while (dbReader.Read())
-                    WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Products_Price_Order"] + " $", dbReader["Product_StorageArea"]);
+                    WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);
                 WriteLine("\n  ------------------------------------------------------------------------------------------------------------------------------------------");
             
             dbConnection.Close();
@@ -142,8 +142,10 @@ namespace H1_ERP_System
 
         #region CRUD Operations
 
-        void InsertRow()
+        public void InsertRow()
         {
+            dbConnection.Open();
+
             WriteLine("  \n\n  Insert Record to the Products table: \n\n");
             Write("  Product Number: ");
             int productNumber = Convert.ToInt32(ReadLine());
@@ -158,20 +160,26 @@ namespace H1_ERP_System
             Write("  Storage Location: ");
             string storageLocation = ReadLine();
 
-            dbCommand = new SQLiteCommand("INSERT INTO Products (Productnumber, Name, Quantity, Saleprice, Orderprice, Storagelocation) values ('" + productNumber + "','" + name + "','" + quantity + "','" + salePrice + "','" + orderPrice + "','" + storageLocation + "')", dbConnection);
+            dbCommand = new SQLiteCommand("INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values ('" + productNumber + "','" + name + "','" + quantity + "','" + salePrice + "','" + orderPrice + "','" + storageLocation + "')", dbConnection);
             dbCommand.ExecuteNonQuery();
+
+            dbConnection.Close();
         }
 
-        void DeleteRowByID()
+        public void DeleteRowByID()
         {
+            dbConnection.Open();
+
             Write("\n\n  Select the ID of the row in the products table that you wish to remove: ");
             int deleteID = Convert.ToInt32(ReadLine());
 
             dbCommand = new SQLiteCommand("DELETE FROM Products WHERE ProductID=" + deleteID + "", dbConnection);
             dbCommand.ExecuteNonQuery();
+
+            dbConnection.Close();
         }
 
-        void InsertRowToAnotherTable()
+        public void InsertRowToAnotherTable()
         {
             dbConnection.Open();
 

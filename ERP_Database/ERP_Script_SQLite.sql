@@ -1,11 +1,11 @@
 
 
-CREATE TABLE Products ( ProductID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, Product_Number INTEGER, Product_Name NVCHAR(20), Product_Quantity INTEGER, Product_Price_Sale INTEGER, Products_Price_Order INTEGER, Product_StorageArea NVCHAR(4) );	
-INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Products_Price_Order, Product_StorageArea) values (22423, 'Z5 Drill', 30, 20, 15, '2B');
-INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Products_Price_Order, Product_StorageArea) values (22, 'Screwdriver', 60, 100, 50, '2B');
-INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Products_Price_Order, Product_StorageArea) values (3213, 'Hard Hat', 5, 29, 22, '3X');
-INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Products_Price_Order, Product_StorageArea) values (4123, 'Hammer', 142, 19, 9, '4B');
-INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Products_Price_Order, Product_StorageArea) values (333, 'Tool Belt', 5, 29, 22, '3X');																													
+CREATE TABLE Products ( ProductID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, Product_Number INTEGER, Product_Name NVCHAR(20), Product_Quantity INTEGER, Product_Price_Sale INTEGER, Product_Price_Order INTEGER, Product_StorageArea NVCHAR(4) );	
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (22423, 'Z5 Drill', 30, 20, 15, '2B');
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (22, 'Screwdriver', 60, 100, 50, '2B');
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (3213, 'Hard Hat', 5, 29, 22, '3X');
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (4123, 'Hammer', 142, 19, 9, '4B');
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (333, 'Tool Belt', 5, 29, 22, '3X');																													
 
 CREATE TABLE VendorProducts ( VendorProductID INTEGER PRIMARY KEY AUTOINCREMENT, VenProduct_Number INTEGER, VenProduct_Name NVCHAR(20), VenProduct_Price_Order INTEGER );							  
 INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Price_Order) values (23, 'Duct Tape', 10);

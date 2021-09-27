@@ -36,11 +36,16 @@ namespace H1_ERP_System
 
                 PTDB.CheckIfDBExists();
                 PTDB.PrintProducts();
-                PTDB.PrintExtProducts();
-                PTDB.PrintPerson();
+                //PTDB.PrintExtProducts();
+                //PTDB.PrintPerson();
+
+               
+
 
                 // Displays the user commands
                 User_Commands();
+                PTDB.InsertRow();
+                PTDB.DeleteRowByID();
 
 
                 // Here is where the user can interact and peform CRUD oprations.
