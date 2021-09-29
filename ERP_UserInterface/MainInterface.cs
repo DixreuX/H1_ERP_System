@@ -27,7 +27,7 @@ namespace H1_ERP_System
 
         public void Interface()
         {
-            //LM.Login();
+            LM.Login();
 
             while (InterfaceIsRunning == true)
             {
