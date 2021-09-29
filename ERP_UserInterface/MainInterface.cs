@@ -27,7 +27,7 @@ namespace H1_ERP_System
 
         public void Interface()
         {
-            LM.Login();
+            //LM.Login();
 
             while (InterfaceIsRunning == true)
             {
@@ -36,28 +36,22 @@ namespace H1_ERP_System
                 Clear();
                 InterfaceHeader();
 
+                // Checks if the database exists, if not then i creates one
                 PTDB.CheckIfDBExists();
+
+                // View table methods
                 PTDB.PrintProducts();
-                PTDB.PrintClients();
-
-                PTDB.PrintExtProducts();
-                PTDB.PrintPerson();
-
-
-
 
                 // Displays the user commands
                 User_Commands();
 
-                //PTDB.InsertRow();
-                //PTDB.DeleteRowByID();
-
+                CursorVisible = false;
 
                 // Here is where the user can interact and peform CRUD oprations.
                 ConsoleKeyInfo info = ReadKey();
                 if (info.Key == ConsoleKey.A)
                 {
-                  
+                    PTDB.InsertRow();
                 }
                 else if (info.Key == ConsoleKey.V)
                 {
@@ -65,24 +59,34 @@ namespace H1_ERP_System
                 }
                 else if (info.Key == ConsoleKey.E)
                 {
-                   
+                    PTDB.EditRow();
                 }
                 else if (info.Key == ConsoleKey.D)
                 {
-                   
+                    PTDB.DeleteRowByID(); 
                 }
                 else if (info.Key == ConsoleKey.U)
                 {
-                   
+                    PTDB.PrintProducts();
                 }
                 else if (info.Key == ConsoleKey.S)
                 {
-                   
+                    PTDB.SearchForObject(); 
                 }
                 else if (info.Key == ConsoleKey.X)
                 {
                     Environment.Exit(0);
                 }
+                else if (info.Key == ConsoleKey.Q)
+                {
+                    PTDB.DirectQuery();
+                }
+                else if (info.Key == ConsoleKey.L)
+                {
+                    PTDB.ExamplesSQL();
+                }
+
+             
             }
 
             #region CRUD Command GUI
@@ -110,7 +114,16 @@ namespace H1_ERP_System
                 Write("[X] Exit Interface \n");
                 BackgroundColor = ConsoleColor.Black;
                 ForegroundColor = ConsoleColor.Green;
-                WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------");
+                WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------\n");
+                Write("   Test Commands: ");
+                ForegroundColor = ConsoleColor.Black;
+                BackgroundColor = ConsoleColor.DarkCyan;
+                Write("[Q] DirectSQL ");
+                BackgroundColor = ConsoleColor.Cyan;
+                Write("[L] SQL Examples ");
+                BackgroundColor = ConsoleColor.Black;
+                ForegroundColor = ConsoleColor.Green;
+
             }
 
             void InterfaceHeader()
@@ -122,42 +135,5 @@ namespace H1_ERP_System
 
             #endregion
         }
-
- 
-
-
-            #region CRUD Command GUI (Vendorlist)
-
-            void Vendor_Commands()
-            {
-                // Simply displays the commands to the user and adds some color. At the end, the color resets.
-
-                WriteLine("\n\n  -------------------------------------------------------------------------------------------------------------------------------------------\n");
-                Write("\n\n  Commands: ");
-                ForegroundColor = ConsoleColor.Black;
-                BackgroundColor = ConsoleColor.Green;
-                Write("[B] Buy Product ");
-                BackgroundColor = ConsoleColor.DarkMagenta;
-                Write("[R] Return to Warehouse Interface ");
-                BackgroundColor = ConsoleColor.Black;
-                ForegroundColor = ConsoleColor.Green;
-                WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------");
-            }
-
-            void VendorHeader()
-            {
-                WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------\n");
-                WriteLine("                                                        External Vendor | ERP system\n");
-                WriteLine("  -------------------------------------------------------------------------------------------------------------------------------------------");
-
-            }
-
-            #endregion
-
-
-        
-
-      
-
     }
 }
