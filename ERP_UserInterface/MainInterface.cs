@@ -16,6 +16,7 @@ namespace H1_ERP_System
 
         // Boolean that controls if the interface is running
         bool InterfaceIsRunning = true;
+        int currentTable = 0;
 
 
         // When the class is instatiated the constructor calls the Interface() method
@@ -27,7 +28,7 @@ namespace H1_ERP_System
 
         public void Interface()
         {
-            LM.Login();
+            //LM.Login();
 
             while (InterfaceIsRunning == true)
             {
@@ -85,8 +86,12 @@ namespace H1_ERP_System
                 {
                     PTDB.ExamplesSQL();
                 }
+                else if (info.Key == ConsoleKey.N)
+                {                   
 
-             
+                }
+
+
             }
 
             #region CRUD Command GUI
@@ -121,6 +126,8 @@ namespace H1_ERP_System
                 Write("[Q] DirectSQL ");
                 BackgroundColor = ConsoleColor.Cyan;
                 Write("[L] SQL Examples ");
+                BackgroundColor = ConsoleColor.Gray;
+                Write("[N] Select Table");;
                 BackgroundColor = ConsoleColor.Black;
                 ForegroundColor = ConsoleColor.Green;
 
@@ -134,6 +141,25 @@ namespace H1_ERP_System
             }
 
             #endregion
+
+            void TableSelect()
+            {               
+                Clear();
+
+                WriteLine("\n\n  Press a number to select the table to view: \n  1. Products\n  2. Vendor Products\n  3. Persons\n  4. Clients\n  5. Addresses\n 6. Contacts\n\n Press Enter");
+                int TableID = Convert.ToInt32(ReadLine());
+
+                //switch (TableID)
+                //{
+                //    case 1:
+                //        1
+                //        break;
+                //}
+
+                
+
+
+            }
         }
     }
 }

@@ -75,7 +75,7 @@ namespace H1_ERP_System
         {
             dbConnection.Open();
 
-                Console.WriteLine("\n                                                         Products Table ");
+                Console.WriteLine("\n                                                               Products Table ");
 
                 string productHeaders = string.Format(
                        "\n  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |\n\n",
@@ -98,7 +98,7 @@ namespace H1_ERP_System
         {
             dbConnection.Open();
 
-            Console.WriteLine("\n                                                         Clients Table ");
+            Console.WriteLine("\n                                                                 Clients Table ");
 
             string productHeaders = string.Format(
                    "\n  {0,12} |  {1,17} |  {2,22} |  {3,12} |\n\n",
@@ -121,7 +121,7 @@ namespace H1_ERP_System
         {
             dbConnection.Open();
             
-                Console.WriteLine("\n                                                       Vendor Products Table ");
+                Console.WriteLine("\n                                                           Vendor Products Table ");
 
                 string extProductHeaders = string.Format(
                        "\n\n  {0,12} |  {1,17} |  {2,22} |  {3,12} | \n\n",
@@ -143,7 +143,7 @@ namespace H1_ERP_System
         {
             dbConnection.Open();
 
-                Console.WriteLine("\n                                                            Person Table");
+                Console.WriteLine("\n                                                                Person Table");
 
                 string personHeaders = string.Format(
                        "\n\n  {0,12} |  {1,17} |  {2,22} |\n\n",
@@ -230,8 +230,8 @@ namespace H1_ERP_System
             //string editStorageSpace = ReadLine();
             WriteLine("\n\n  Press ENTER to confirm changes");
 
-            dbCommand = new SQLiteCommand("UPDATE Products SET Product_Number =" + editProdNr + "," + "WHERE ProductID=" + productEditSelection, dbConnection );
-            dbCommand.ExecuteNonQuery();
+            //dbCommand = new SQLiteCommand("UPDATE Products SET Product_Number =" + editProdNr, "WHERE ProductID=" + productEditSelection, dbConnection );
+            //dbCommand.ExecuteNonQuery();
 
 
 

@@ -1,4 +1,3 @@
-
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE Products ( 
@@ -58,7 +57,12 @@ INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Pr
 INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (22, 'Screwdriver', 60, 100, 50, '2B');
 INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (3213, 'Hard Hat', 5, 29, 22, '3X');
 INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (4123, 'Hammer', 142, 19, 9, '4B');
-INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (333, 'Tool Belt', 5, 29, 22, '3X');		
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (333, 'Tool Belt', 5, 29, 22, '3X');
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (7, 'Safety Shoes', 14, 89, 59, '3X');
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (22, 'Safety Hook', 5, 39, 29, '3X');
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (3213, 'Shovel', 100, 19, 14, '4B');
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (4123, 'Hammer', 142, 19, 9, '4B');
+INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (333, 'Markers', 100, 9, 4, '8K');			
 
 INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Price_Order) values (23, 'Duct Tape', 10);
 INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Price_Order) values (613, 'Scotch Tape', 7);

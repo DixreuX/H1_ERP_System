@@ -59,3 +59,5 @@
 
   [29-09-2021] Added a search method and a direct to sql method, implemented commands to my main interface and sexperimentet a little.
 
+  [30-09-2021] Some small changes, had to switch project. 
+
