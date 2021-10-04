@@ -11,11 +11,16 @@ namespace H1_ERP_System
     {
         public void Login()
         {
+            ForegroundColor = ConsoleColor.Green;
+            TextsAndHeaders THL = new TextsAndHeaders();
+
             bool validLogin = false;
 
             while(validLogin == false)
             {
-                WriteLine("\n  Welcome to Planet Tools' ERP System \n\n\n               LOGIN\n");
+                THL.LoginHeader();
+
+                WriteLine("\n  LOGIN\n");
 
                 Write("  Username: ");
                 string userName = ReadLine();

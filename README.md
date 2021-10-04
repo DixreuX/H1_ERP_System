@@ -16,19 +16,19 @@
   GOALS:
 
   - Create a database using SQLite 
-   STATUS: WIP(Working), you need to change paths PlanetTools_Database.cs for it to work
+   STATUS: WIP(Working, 90%), you need to change paths PlanetTools_Database.cs for it to work
 
   - Make my CRUD and print tables methods as reusable as possible. 
-   STATUS: WIP(20%)
+   STATUS: WIP(80%)
 
   - Create the database, tables and data seeds from a script 
-   STATUS: WIP(The tables and the data seeding is working)
+   STATUS: WIP(The tables and the data seeding is working, 90%)
 
   - Print and format the tables for a userfriendly experience 
    STATUS: DONE
 
   - Implement user action GUI with backend functions
-   STATUS: DONE (I just need the methods, will be added when they are optimized)
+   STATUS: DONE
 
 
   IDE, TOOLS AND PROGRAMS:
@@ -57,7 +57,14 @@
 
   [27-09-2021] Added a login screen, expanded my database script and fixed several issues
 
-  [29-09-2021] Added a search method and a direct to sql method, implemented commands to my main interface and sexperimentet a little.
+  [29-09-2021] Added a search method and a direct to sql method, implemented commands to my main interface and experimented a little.
 
   [30-09-2021] Some small changes, had to switch project. 
+
+  [04-10-2021] All CRUD operations now work for the products table. 
+               Removed alot of the text, made it reusable and put it in its own class
+               Added a method to switch tables using keys
+               It is now possible to pick a row from the vendor table and add it to the products table
+               Created a LEFT JOIN method but i cant make it work yet
+
 

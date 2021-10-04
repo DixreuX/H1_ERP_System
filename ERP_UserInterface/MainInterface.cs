@@ -12,11 +12,12 @@ namespace H1_ERP_System
         // This creates a database object which i use to access CRUD operations
         PlanetTools_Database PTDB = new PlanetTools_Database();
         LoginModule LM = new LoginModule();
+        TextsAndHeaders TH = new TextsAndHeaders();
 
 
         // Boolean that controls if the interface is running
         bool InterfaceIsRunning = true;
-        int currentTable = 0;
+        int currentTable = 1;
 
 
         // When the class is instatiated the constructor calls the Interface() method
@@ -28,25 +29,23 @@ namespace H1_ERP_System
 
         public void Interface()
         {
-            //LM.Login();
+            LM.Login();
 
             while (InterfaceIsRunning == true)
             {
-                // The next couple of lines turns the console text green and clears the console when the loop repeats.
+                // Turns text green, clears the console, displays the main header and makes the console cursor invisible
                 ForegroundColor = ConsoleColor.Green;
                 Clear();
-                InterfaceHeader();
+                CursorVisible = false;
 
-                // Checks if the database exists, if not then i creates one
+                // Checks if the database exists, if not then i creates one and fills it via a script
                 PTDB.CheckIfDBExists();
 
-                // View table methods
-                PTDB.PrintProducts();
+                // View table / select table
+                TableSelect();
 
                 // Displays the user commands
-                User_Commands();
-
-                CursorVisible = false;
+                TH.UserCommands();           
 
                 // Here is where the user can interact and peform CRUD oprations.
                 ConsoleKeyInfo info = ReadKey();
@@ -56,7 +55,7 @@ namespace H1_ERP_System
                 }
                 else if (info.Key == ConsoleKey.V)
                 {
-                   
+                    PTDB.InsertRowToAnotherTable();
                 }
                 else if (info.Key == ConsoleKey.E)
                 {
@@ -87,78 +86,45 @@ namespace H1_ERP_System
                     PTDB.ExamplesSQL();
                 }
                 else if (info.Key == ConsoleKey.N)
-                {                   
-
+                {
+                    currentTable--;
+                }
+                else if (info.Key == ConsoleKey.M)
+                {
+                    currentTable++;
                 }
 
 
             }
 
-            #region CRUD Command GUI
-
-            void User_Commands()
-            {
-                // Simply displays the commands to the user and adds some color. At the end, the color resets.
-
-                WriteLine("\n\n  -------------------------------------------------------------------------------------------------------------------------------------------\n");
-                Write("   Commands: ");
-                ForegroundColor = ConsoleColor.Black;
-                BackgroundColor = ConsoleColor.Green;
-                Write("[A] Add Row (Manual) ");
-                BackgroundColor = ConsoleColor.DarkGreen;
-                Write("[V] Add Row (Vendor List) ");
-                BackgroundColor = ConsoleColor.Yellow;
-                Write("[E] Edit Row ");
-                BackgroundColor = ConsoleColor.Red;
-                Write("[D] Delete Row ");
-                BackgroundColor = ConsoleColor.White;
-                Write("[U] Update List ");
-                BackgroundColor = ConsoleColor.Blue;
-                Write("[S] Search ");
-                BackgroundColor = ConsoleColor.DarkRed;
-                Write("[X] Exit Interface \n");
-                BackgroundColor = ConsoleColor.Black;
-                ForegroundColor = ConsoleColor.Green;
-                WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------\n");
-                Write("   Test Commands: ");
-                ForegroundColor = ConsoleColor.Black;
-                BackgroundColor = ConsoleColor.DarkCyan;
-                Write("[Q] DirectSQL ");
-                BackgroundColor = ConsoleColor.Cyan;
-                Write("[L] SQL Examples ");
-                BackgroundColor = ConsoleColor.Gray;
-                Write("[N] Select Table");;
-                BackgroundColor = ConsoleColor.Black;
-                ForegroundColor = ConsoleColor.Green;
-
-            }
-
-            void InterfaceHeader()
-            {
-                WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------");
-                WriteLine("                                                           Planet Tools | ERP system");
-                WriteLine("  -------------------------------------------------------------------------------------------------------------------------------------------");
-            }
-
-            #endregion
-
+            // The value of currentTable determines which table is displayed
             void TableSelect()
-            {               
-                Clear();
-
-                WriteLine("\n\n  Press a number to select the table to view: \n  1. Products\n  2. Vendor Products\n  3. Persons\n  4. Clients\n  5. Addresses\n 6. Contacts\n\n Press Enter");
-                int TableID = Convert.ToInt32(ReadLine());
-
-                //switch (TableID)
-                //{
-                //    case 1:
-                //        1
-                //        break;
-                //}
-
-                
-
-
+            {
+                switch (currentTable)
+                {
+                    case 1:
+                        PTDB.PrintProducts();
+                        break;
+                    case 2:
+                        PTDB.PrintVendorProducts();
+                        break;
+                    case 3:
+                        PTDB.PrintClients();
+                        break;
+                    case 4:
+                        PTDB.PrintPerson();
+                        //PTDB.PrintPersonWithDetails();
+                        break;
+                    case 5:
+                        PTDB.PrintAddresses();
+                        break;
+                    case 6:
+                        PTDB.PrintContacts();
+                        break;
+                    default:
+                        PTDB.PrintProducts();
+                        break;
+                }
             }
         }
     }

@@ -127,3 +127,46 @@ C:\Users\Bruger 1\Source\Repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.dll
 C:\Users\Bruger 1\Source\Repos\H1_ERP_System\obj\Debug\net5.0\ref\H1_ERP_System.dll
 C:\Users\Bruger 1\Source\Repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.pdb
 C:\Users\Bruger 1\Source\Repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.genruntimeconfig.cache
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\H1_ERP_System.exe
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\H1_ERP_System.deps.json
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\H1_ERP_System.runtimeconfig.json
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\H1_ERP_System.runtimeconfig.dev.json
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\H1_ERP_System.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\ref\H1_ERP_System.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\H1_ERP_System.pdb
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\EntityFramework.SqlServer.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\EntityFramework.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\System.Data.SQLite.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\System.CodeDom.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\System.Data.SqlClient.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\System.Data.SQLite.EF6.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\System.Drawing.Common.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\System.Security.Permissions.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\System.Windows.Extensions.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\win-x86\native\SQLite.Interop.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Danny\source\repos\H1_ERP_System\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\Danny\source\repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.csproj.AssemblyReference.cache
+C:\Users\Danny\source\repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Danny\source\repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.AssemblyInfoInputs.cache
+C:\Users\Danny\source\repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.AssemblyInfo.cs
+C:\Users\Danny\source\repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.csproj.CoreCompileInputs.cache
+C:\Users\Danny\source\repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.csproj.CopyComplete
+C:\Users\Danny\source\repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.dll
+C:\Users\Danny\source\repos\H1_ERP_System\obj\Debug\net5.0\ref\H1_ERP_System.dll
+C:\Users\Danny\source\repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.pdb
+C:\Users\Danny\source\repos\H1_ERP_System\obj\Debug\net5.0\H1_ERP_System.genruntimeconfig.cache

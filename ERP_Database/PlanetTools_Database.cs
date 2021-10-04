@@ -14,8 +14,10 @@ namespace H1_ERP_System
         SQLiteConnection dbConnection;
         SQLiteCommand dbCommand;
         SQLiteDataReader dbReader;
+        TextsAndHeaders TAH = new TextsAndHeaders();
 
-        #region Db creation, validation and connection
+
+        #region Check if database exists
 
         public void CheckIfDBExists()
         {
@@ -41,9 +43,14 @@ namespace H1_ERP_System
             SQLiteConnection.CreateFile("PlanetToolsDatabase.sqlite");
         }
 
+        #endregion
+
+
+        #region ConnectionString
+
         void ConnectToDatabase()
         {
-            // My connection to the db
+            // The ConnectionString
 
             dbConnection = new SQLiteConnection(@"Data Source=PlanetToolsDatabase.sqlite;Version=3;");
         }
@@ -51,7 +58,7 @@ namespace H1_ERP_System
         #endregion
 
 
-        #region SQLite script test (Working)
+        #region SQL script for creating and seeding my database
 
         void ExecuteSQLiteScript()
         {
@@ -69,19 +76,12 @@ namespace H1_ERP_System
         #endregion
 
 
-        #region Print out data
+        #region Methods for printing tables in the console
 
         public void PrintProducts()
         {
             dbConnection.Open();
-
-                Console.WriteLine("\n                                                               Products Table ");
-
-                string productHeaders = string.Format(
-                       "\n  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |\n\n",
-                       "ProductID", "Product Number", "Name", "Quantity", "Sale Price", "Order Price", "Storage Location");
-
-                WriteLine(productHeaders);
+            TAH.ProductsHeader();   
 
                 string readTables = "SELECT * FROM Products";
                 dbCommand = new SQLiteCommand(readTables, dbConnection);
@@ -89,52 +89,21 @@ namespace H1_ERP_System
                
                 while (dbReader.Read())
                     WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);
-                WriteLine("\n  ------------------------------------------------------------------------------------------------------------------------------------------");
             
             dbConnection.Close();
         }
 
-        public void PrintClients()
+        public void PrintVendorProducts()
         {
             dbConnection.Open();
+            TAH.VendorProductsHeader();
 
-            Console.WriteLine("\n                                                                 Clients Table ");
-
-            string productHeaders = string.Format(
-                   "\n  {0,12} |  {1,17} |  {2,22} |  {3,12} |\n\n",
-                   "ClientID", "Client_Number", "Client_LastOrderID", "Client_LastOrderDate");
-
-            WriteLine(productHeaders);
-
-            string readTables = "SELECT * FROM Clients";
-            dbCommand = new SQLiteCommand(readTables, dbConnection);
+            string readTable = "SELECT * FROM VendorProducts";
+            dbCommand = new SQLiteCommand(readTable, dbConnection);
             dbReader = dbCommand.ExecuteReader();
 
             while (dbReader.Read())
-                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |", dbReader["ClientID"], dbReader["Client_Number"], dbReader["Client_LastOrderID"], dbReader["Client_LastOrderDate"]);
-            WriteLine("\n  ------------------------------------------------------------------------------------------------------------------------------------------");
-
-            dbConnection.Close();
-        }
-
-        public void PrintExtProducts()
-        {
-            dbConnection.Open();
-            
-                Console.WriteLine("\n                                                           Vendor Products Table ");
-
-                string extProductHeaders = string.Format(
-                       "\n\n  {0,12} |  {1,17} |  {2,22} |  {3,12} | \n\n",
-                       "ExtProductID", "Product Number", "Name", "Quantity", "Sale Price", "Order Price", "Storage Location");
-
-                WriteLine(extProductHeaders);
-
-                string readTable = "SELECT * FROM VendorProducts";
-                dbCommand = new SQLiteCommand(readTable, dbConnection);
-                dbReader = dbCommand.ExecuteReader();
-                while (dbReader.Read())
-                    WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |", dbReader["VendorProductID"], dbReader["VenProduct_Number"], dbReader["VenProduct_Name"], dbReader["VenProduct_Price_Order"] + " $");
-                WriteLine("\n\n  ------------------------------------------------------------------------------------------------------------------------------------------");
+                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |", dbReader["VendorProductID"], dbReader["VenProduct_Number"], dbReader["VenProduct_Name"], dbReader["VenProduct_Price_Order"] + " $");
 
             dbConnection.Close();
         }
@@ -142,28 +111,93 @@ namespace H1_ERP_System
         public void PrintPerson()
         {
             dbConnection.Open();
-
-                Console.WriteLine("\n                                                                Person Table");
-
-                string personHeaders = string.Format(
-                       "\n\n  {0,12} |  {1,17} |  {2,22} |\n\n",
-                       "PersonId", "Firstname", "Lastname");
-
-                WriteLine(personHeaders);
+            TAH.PersonsHeader();  
 
                 string readTable = "SELECT * FROM Persons";
                 dbCommand = new SQLiteCommand(readTable, dbConnection);
                 dbReader = dbCommand.ExecuteReader();
+
                 while (dbReader.Read())
                     WriteLine("  {0,12} |  {1,17} |  {2,22} |", dbReader["PersonID"], dbReader["Person_Firstname"], dbReader["Person_Lastname"]);
-                WriteLine("\n\n  ------------------------------------------------------------------------------------------------------------------------------------------");
+
+            dbConnection.Close();
+        }
+
+        public void PrintPersonWithDetails()
+        {
+            dbConnection.Open();
+
+            WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------");
+            WriteLine("                                                     Address table left joined with Persons");
+            WriteLine("  -------------------------------------------------------------------------------------------------------------------------------------------");
+
+            string personHeaders = string.Format(
+                      "\n\n  {0,10} |  {1,15} |  {2,15} | {3,10} | {4,15} | {5,10} | {6,10} | {7,20} |\n\n",
+                      "PersonId", "Firstname", "Lastname", "AddressID", "Street", "Street Number", "Zipcode", "City");
+
+            WriteLine(personHeaders);
+
+            string readTable = "SELECT Addresses.Address_Street, Addresses.Address_Number, Addresses.Address_Zipcode, Addresses.Address_City FROM Addresses LEFT JOIN Persons ON Persons.PersonID = Addresses.AddressID";
+            dbCommand = new SQLiteCommand(readTable, dbConnection);
+            dbReader = dbCommand.ExecuteReader();
+
+            while (dbReader.Read())
+                WriteLine("  {0,10} |  {1,15} |  {2,15} | {3,10} | {4,15} | {5,10} | {6,10} | {7,20} |", dbReader["PersonID"], dbReader["Person_Firstname"], dbReader["Person_Lastname"], dbReader["AddressID"], dbReader["Address_Street"], dbReader["Address_Number"], dbReader["Address_Zipcode"], dbReader["Address_City"]);
+
+            dbConnection.Close();
+        }
+
+
+
+        public void PrintAddresses()
+        {
+            dbConnection.Open();
+            TAH.AddressesHeader();
+
+            string readTable = "SELECT * FROM Addresses";
+            dbCommand = new SQLiteCommand(readTable, dbConnection);
+            dbReader = dbCommand.ExecuteReader();
+
+            while (dbReader.Read())
+                WriteLine("  {0,20} |  {1,17} |  {2,22} | {3,22} |", dbReader["Address_Street"], dbReader["Address_Number"], dbReader["Address_Zipcode"], dbReader["Address_City"]);
+
+            dbConnection.Close();
+        }
+
+        public void PrintContacts()
+        {
+            dbConnection.Open();
+            TAH.ContactsHeader();
+
+            string readTable = "SELECT * FROM Contacts";
+            dbCommand = new SQLiteCommand(readTable, dbConnection);
+            dbReader = dbCommand.ExecuteReader();
+
+            while (dbReader.Read())
+                WriteLine("  {0,30} |  {1,15} |", dbReader["Contact_Email"], dbReader["Contact_PhoneNr"]);
+
+            dbConnection.Close();
+        }
+
+        public void PrintClients()
+        {
+            dbConnection.Open();
+            TAH.ClientsHeader();
+
+            string readTables = "SELECT * FROM Clients";
+            dbCommand = new SQLiteCommand(readTables, dbConnection);
+            dbReader = dbCommand.ExecuteReader();
+
+            while (dbReader.Read())
+                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |", dbReader["ClientID"], dbReader["Client_Number"], dbReader["Client_LastOrderID"], dbReader["Client_LastOrderDate"]);
 
             dbConnection.Close();
         }
 
         #endregion
 
-        #region CRUD Operations
+
+        #region CRUD (Products table)
 
         public void InsertRow()
         {
@@ -197,10 +231,8 @@ namespace H1_ERP_System
             int productEditSelection = Convert.ToInt32(ReadLine());
 
             Clear();
-
-            WriteLine("\n  ------------------------------------------");
-            WriteLine("                    Selected: ");
-            WriteLine("  ------------------------------------------\n");
+            TAH.SelectedRow();
+      
             string productHeaders = string.Format(
                       "\n  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |\n\n",
                       "ProductID", "Product Number", "Name", "Quantity", "Sale Price", "Order Price", "Storage Location");
@@ -212,40 +244,26 @@ namespace H1_ERP_System
             dbReader = dbCommand.ExecuteReader();
 
             while (dbReader.Read())
-                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);
-            WriteLine("\n  ------------------------------------------");
-            WriteLine("                    Edit");
-            WriteLine("  ------------------------------------------\n");
+                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);                       
+            
+            TAH.EditRow();
+
             Write("  Product Number: ");
-            int editProdNr = Convert.ToInt32(ReadLine());
-            //Write("  Name: ");
-            //string editName = ReadLine();
-            //Write("  Quantity: ");
-            //int editQuantity = Convert.ToInt32(ReadLine());
-            //Write("  Sales Price: ");
-            //int editSalesPrice = Convert.ToInt32(ReadLine());
-            //Write("  Order Price: ");
-            //int editOrderPrice = Convert.ToInt32(ReadLine());
-            //Write("  Storage Area: ");
-            //string editStorageSpace = ReadLine();
-            WriteLine("\n\n  Press ENTER to confirm changes");
-
-            //dbCommand = new SQLiteCommand("UPDATE Products SET Product_Number =" + editProdNr, "WHERE ProductID=" + productEditSelection, dbConnection );
-            //dbCommand.ExecuteNonQuery();
+            int productNumber = Convert.ToInt32(ReadLine());
+            Write("  Name: ");
+            string name = ReadLine();
+            Write("  Quantity: ");
+            int quantity = Convert.ToInt32(ReadLine());
+            Write("  Sale Price: ");
+            int salePrice = Convert.ToInt32(ReadLine());
+            Write("  Order Price: ");
+            int orderPrice = Convert.ToInt32(ReadLine());
+            Write("  Storage Location: ");
+            string storageLocation = ReadLine();
 
 
-
-
-            //dbCommand = new SQLiteCommand("UPDATE Products SET Product_Name='" + editName + "'WHERE ProductId=" + productEditSelection, dbConnection);
-            //dbCommand.ExecuteNonQuery();
-            //dbCommand = new SQLiteCommand("UPDATE Products SET Product_Quantity=" + editQuantity + "WHERE ProductId=" + productEditSelection, dbConnection);
-            //dbCommand.ExecuteNonQuery();
-            //dbCommand = new SQLiteCommand("UPDATE Products SET Product_Price_Sales=" + editSalesPrice + "WHERE ProductId=" + productEditSelection, dbConnection);
-            //dbCommand.ExecuteNonQuery();
-            //dbCommand = new SQLiteCommand("UPDATE Products SET Product_Price_Order=" + editOrderPrice + "WHERE ProductId=" + productEditSelection, dbConnection);
-            //dbCommand.ExecuteNonQuery();
-            //dbCommand = new SQLiteCommand("UPDATE Products SET Product_StorageArea='" + editStorageSpace + "'WHERE ProductId=" + productEditSelection, dbConnection);
-            //dbCommand.ExecuteNonQuery();
+            dbCommand = new SQLiteCommand("UPDATE Products SET Product_Number='" + productNumber  + "', Product_Name='" + name + "', Product_Quantity='" + quantity + "', Product_Price_Sale='" + salePrice + "', Product_Price_Order='" + orderPrice + "', Product_StorageArea='" + storageLocation + "' WHERE ProductID=" + productEditSelection + "", dbConnection);
+            dbCommand.ExecuteNonQuery();
 
             dbConnection.Close();
         }
@@ -270,7 +288,7 @@ namespace H1_ERP_System
             Write("\n\n  Select the ID of the product that you wish to purchase: \n\n ");
             int idProductOrder = Convert.ToInt32(ReadLine());
 
-            dbCommand = new SQLiteCommand("INSERT INTO Products SELECT * FROM ExtProducts WHERE ExtProductID=" + idProductOrder + "", dbConnection);
+            dbCommand = new SQLiteCommand("INSERT INTO Products (Product_Number, Product_Name, Product_Price_Order) SELECT VenProduct_Number, VenProduct_Name, VenProduct_Price_Order FROM VendorProducts WHERE VendorProductID=" + idProductOrder + "", dbConnection);
             dbCommand.ExecuteNonQuery();
 
             dbConnection.Close();
@@ -280,13 +298,11 @@ namespace H1_ERP_System
         {
             dbConnection.Open();
 
-                Write("\n\n  [SEARCH] Name: ");
+                Write("\n\n  [SEARCH] Product Name: ");
                 string productsNameSearch = ReadLine();
                 Clear();
 
-                WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------");
-                WriteLine("                                                                 SEARCH RESULTS");
-                WriteLine("  -------------------------------------------------------------------------------------------------------------------------------------------");
+            TAH.SearchHeader();
 
             WriteLine("\n                                         Query: SELECT * FROM Products WHERE Product_Name LIKE '%<UserInput>%'\n\n");
 
@@ -297,17 +313,14 @@ namespace H1_ERP_System
             while (dbReader.Read())
             WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);
 
-
-            WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------");
-            WriteLine("                                                             PRESS ANY KEY TO RETURN");
-            WriteLine("  -------------------------------------------------------------------------------------------------------------------------------------------");
-
-                      
-
+            TAH.KeyToReturnFooter();
             ReadKey();
 
             dbConnection.Close();
         }
+
+        #endregion
+
 
         #region Direct SQL Queries
 
@@ -319,15 +332,15 @@ namespace H1_ERP_System
 
                 Write("\n\n  SQL Query \n\n");
                 Write("  Command: ");
-                string yourQuery = ReadLine();
+                string myQuery = ReadLine();
                 WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------");
                 WriteLine("  Result: ");
                 WriteLine("  -------------------------------------------------------------------------------------------------------------------------------------------");
 
-                dbCommand = new SQLiteCommand(yourQuery, dbConnection);
+                dbCommand = new SQLiteCommand(myQuery, dbConnection);
                 dbCommand.ExecuteNonQuery();
 
-                string readTables = yourQuery;
+                string readTables = myQuery;
                 dbCommand = new SQLiteCommand(readTables, dbConnection);
                 dbReader = dbCommand.ExecuteReader();
 
@@ -348,60 +361,24 @@ namespace H1_ERP_System
                     WriteLine("");
                     
                 }
-                WriteLine("  -------------------------------------------------------------------------------------------------------------------------------------------");
-                WriteLine("\n\n  Press enter to write another query");
+                TAH.KeyToReturnFooter();
                 ReadKey();
             
 
             dbConnection.Close();
         }
-        
-
 
         #endregion
 
-        #endregion
+
+        #region Database demo
 
         public void ExamplesSQL()
         {
             dbConnection.Open();
-            ExProductsTablePrint();
-            ExAdd();
-            ExProductsTablePrint();
+
 
             dbConnection.Close();
-        }
-
-        #region Example Queries
-
-        public void ExProductsTablePrint()
-        {
-            Console.WriteLine("\n                                                       Products Table ");
-
-            string productHeaders = string.Format(
-                   "\n  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |\n\n",
-                   "ProductID", "Product Number", "Name", "Quantity", "Sale Price", "Order Price", "Storage Location");
-
-            WriteLine(productHeaders);
-
-            string readTables = "SELECT * FROM Products";
-            dbCommand = new SQLiteCommand(readTables, dbConnection);
-            dbReader = dbCommand.ExecuteReader();
-
-            while (dbReader.Read())
-                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);
-            WriteLine("\n  ------------------------------------------------------------------------------------------------------------------------------------------");
-        }
-
-        public void ExAdd()
-        {
-            dbCommand = new SQLiteCommand("INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (404, 'AddRowQuery', 1, 0, 0, 1A )", dbConnection);
-            dbCommand.ExecuteNonQuery();
-        }
-
-        public void ExEdit()
-        {
-
         }
 
         #endregion
