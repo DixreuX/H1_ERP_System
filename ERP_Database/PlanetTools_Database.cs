@@ -38,7 +38,7 @@ namespace H1_ERP_System
 
         void CreateDatabase()
         {
-            // Creates the file and fills the db
+            // Creates the database file (.sqlite)
 
             SQLiteConnection.CreateFile("PlanetToolsDatabase.sqlite");
         }
@@ -371,12 +371,46 @@ namespace H1_ERP_System
         #endregion
 
 
-        #region Database demo
+        #region Left join demo
 
         public void ExamplesSQL()
         {
             dbConnection.Open();
+            string myJoinQuery = "SELECT ContactID, Contact_Email, Contact_PhoneNr FROM Contacts INNER JOIN Persons ON Contacts.ContactID = Persons.ContactID";
+            Clear();
 
+            Write("\n\n  SQL Query \n\n");
+            Write("  Command: SELECT ContactID, Contact_Email, Contact_PhoneNr FROM Contacts INNER JOIN Persons ON Contacts.ContactID = Persons.ContactID");
+            WriteLine("\n  -------------------------------------------------------------------------------------------------------------------------------------------");
+            WriteLine("  Result: ");
+            WriteLine("  -------------------------------------------------------------------------------------------------------------------------------------------");
+
+            dbCommand = new SQLiteCommand(myJoinQuery, dbConnection);
+            dbCommand.ExecuteNonQuery();
+
+            string readTables = myJoinQuery;
+            dbCommand = new SQLiteCommand(readTables, dbConnection);
+            dbReader = dbCommand.ExecuteReader();
+
+            for (int i = 0; i < dbReader.FieldCount; i++)
+            {
+                Write("  " + dbReader.GetName(i) + ", ");
+            }
+            WriteLine("");
+
+            Object[] objArray = new Object[dbReader.FieldCount];
+            while (dbReader.Read())
+            {
+                dbReader.GetValues(objArray);
+                foreach (object o in objArray)
+                {
+                    Write("  " + o + ", ");
+                }
+                WriteLine("");
+
+            }
+            TAH.KeyToReturnFooter();
+            ReadKey();
 
             dbConnection.Close();
         }
