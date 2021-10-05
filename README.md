@@ -67,4 +67,7 @@
                It is now possible to pick a row from the vendor table and add it to the products table
                Created a LEFT JOIN method but i cant make it work yet
 
-
+  [05-10-2021] Tried to fix my foreign keys so that i can join tables. After talking to my database programming instructor we've found 
+               that the issue Might be that im missing some UNIQUE and NOT NULL annotations and that data needs to be seeded with 
+               relationships in mind. For now, the database is no longer the priority. Demonstrating OOP and Basic Programming will 
+               be the focus for the remainder of this assignment. 
