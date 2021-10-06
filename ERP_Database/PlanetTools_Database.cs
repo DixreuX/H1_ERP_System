@@ -11,12 +11,27 @@ namespace H1_ERP_System
 {
     public class PlanetTools_Database
     {
+        // My SQLite variables. I use them to interact with my database
         SQLiteConnection dbConnection;
         SQLiteCommand dbCommand;
         SQLiteDataReader dbReader;
-        TextsAndHeaders TAH = new TextsAndHeaders();
 
+        // These are my abstract objects 
+        Header LoginHeader = new Login();
+        Header SearchHeader = new SearchResult();
+        Header ReturnFooter = new KeyToReturnFooter();
+        Header SelectedRow = new SelectedRow();
+        Header SelectedRowEdit = new EditRow();
 
+        // These are my classes that implement ITableHeaders
+        Products Product = new Products();
+        VendorProducts VendorProducts = new VendorProducts();
+        Clients Clients = new Clients();
+        Addresses Addresses = new Addresses();
+        Persons Persons = new Persons();
+        Contacts Contacts = new Contacts();
+
+        
         #region Check if database exists
 
         public void CheckIfDBExists()
@@ -66,7 +81,7 @@ namespace H1_ERP_System
 
             dbConnection.Open();
 
-            string script = File.ReadAllText(@"C:\Users\Bruger 1\source\repos\H1_ERP_System\ERP_Database\ERP_Script_SQLite.sql");
+            string script = File.ReadAllText(@"C:\Users\Danny\source\repos\H1_ERP_System\ERP_Database\ERP_Script_SQLite.sql");
             dbCommand = new SQLiteCommand(script, dbConnection);
             dbCommand.ExecuteNonQuery();
 
@@ -78,10 +93,12 @@ namespace H1_ERP_System
 
         #region Methods for printing tables in the console
 
+        // Selects something using a query and then show the selected infomation in a formatted view
+
         public void PrintProducts()
         {
             dbConnection.Open();
-            TAH.ProductsHeader();   
+            Product.TableHeader();   
 
                 string readTables = "SELECT * FROM Products";
                 dbCommand = new SQLiteCommand(readTables, dbConnection);
@@ -96,14 +113,14 @@ namespace H1_ERP_System
         public void PrintVendorProducts()
         {
             dbConnection.Open();
-            TAH.VendorProductsHeader();
+            VendorProducts.TableHeader();
 
             string readTable = "SELECT * FROM VendorProducts";
             dbCommand = new SQLiteCommand(readTable, dbConnection);
             dbReader = dbCommand.ExecuteReader();
 
             while (dbReader.Read())
-                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |", dbReader["VendorProductID"], dbReader["VenProduct_Number"], dbReader["VenProduct_Name"], dbReader["VenProduct_Price_Order"] + " $");
+                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |", dbReader["VendorProductID"], dbReader["VenProduct_Number"], dbReader["VenProduct_Name"], dbReader["VenProduct_Quantity"], dbReader["VenProduct_Price_Order"] + " $");
 
             dbConnection.Close();
         }
@@ -111,7 +128,7 @@ namespace H1_ERP_System
         public void PrintPerson()
         {
             dbConnection.Open();
-            TAH.PersonsHeader();  
+            Persons.TableHeader();
 
                 string readTable = "SELECT * FROM Persons";
                 dbCommand = new SQLiteCommand(readTable, dbConnection);
@@ -147,12 +164,10 @@ namespace H1_ERP_System
             dbConnection.Close();
         }
 
-
-
         public void PrintAddresses()
         {
             dbConnection.Open();
-            TAH.AddressesHeader();
+            Addresses.TableHeader();
 
             string readTable = "SELECT * FROM Addresses";
             dbCommand = new SQLiteCommand(readTable, dbConnection);
@@ -167,7 +182,7 @@ namespace H1_ERP_System
         public void PrintContacts()
         {
             dbConnection.Open();
-            TAH.ContactsHeader();
+            Contacts.TableHeader();
 
             string readTable = "SELECT * FROM Contacts";
             dbCommand = new SQLiteCommand(readTable, dbConnection);
@@ -182,7 +197,7 @@ namespace H1_ERP_System
         public void PrintClients()
         {
             dbConnection.Open();
-            TAH.ClientsHeader();
+            Clients.TableHeader();
 
             string readTables = "SELECT * FROM Clients";
             dbCommand = new SQLiteCommand(readTables, dbConnection);
@@ -203,35 +218,151 @@ namespace H1_ERP_System
         {
             dbConnection.Open();
 
-            WriteLine("  \n\n  Insert Record to the Products table: \n\n");
-            Write("  Product Number: ");
-            int productNumber = Convert.ToInt32(ReadLine());
-            Write("  Name: ");
-            string name = ReadLine();
-            Write("  Quantity: ");
-            int quantity = Convert.ToInt32(ReadLine());
-            Write("  Sale Price: ");
-            int salePrice = Convert.ToInt32(ReadLine());
-            Write("  Order Price: ");
-            int orderPrice = Convert.ToInt32(ReadLine());
-            Write("  Storage Location: ");
-            string storageLocation = ReadLine();
+            bool allInputIsValid = false;
+            bool numberIsValid = false;
+            bool nameIsValid = false;
+            bool quantityIsValid = false;
+            bool salePriceISValid = false;
+            bool orderPriceIsValid = false;
+            bool storageLocationIsvalid = false;
 
-            dbCommand = new SQLiteCommand("INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values ('" + productNumber + "','" + name + "','" + quantity + "','" + salePrice + "','" + orderPrice + "','" + storageLocation + "')", dbConnection);
-            dbCommand.ExecuteNonQuery();
+            int productNumber = -1;
+            string name = "";
+            int quantity = -1;
+            int salePrice = -1;
+            int orderPrice = -1;
+            string storageLocation = "";
 
-            dbConnection.Close();
+            Clear();
+
+            while (allInputIsValid != true)
+            {
+                WriteLine("  \n\n  Insert Record to the Products table: ");
+
+                // This loop runs until the input is valid. 
+                // I ask the user to type an integer, then i parse the input and cast it to my int productNumber. The bool numberIsValid becomes true and breaks the loop. 
+                // If input could not be parsed, then the loop continues.
+
+                while (numberIsValid != true)
+                {
+                    Write("\n  Product Number: ");
+                    string numberInput = ReadLine();
+
+                    if (!int.TryParse(numberInput, out productNumber))
+                    {
+                        WriteLine("\n\n  Input was either null or not an integer. Try again.\n");
+                    }
+                    else
+                    {
+                        numberIsValid = true;
+                    }
+                }
+
+                // I Check if the string is null or empty, and if it is, then the loop continues.
+                // I dont want to restrict the user from entering numeric values as they have no consequence for the name and some names include numbers.
+
+                while (nameIsValid != true)
+                {
+                    Write("\n  Name: ");
+                    name = ReadLine();
+
+                    if (string.IsNullOrEmpty(name))
+                    {
+                        WriteLine("\n\n  Name cant be null. Try again\n ");
+                    }
+                    else
+                    {
+                        nameIsValid = true;
+                    }
+                }
+
+                while (quantityIsValid != true)
+                {
+                    Write("\n  Quantity: ");
+                    string quantityInput = ReadLine();
+
+                    if (!int.TryParse(quantityInput, out quantity))
+                    {
+                        WriteLine("\n\n  Input was either null or not an integer. Try again.\n");
+                    }
+                    else
+                    {
+                        quantityIsValid = true;
+                    }
+                }
+
+                while (salePriceISValid != true)
+                {
+                    Write("\n  Sale Price: ");
+                    string salePriceInput = ReadLine();
+
+                    if (!int.TryParse(salePriceInput, out salePrice))
+                    {
+                        WriteLine("\n\n  Input was either null or not an integer. Try again.\n");
+                    }
+                    else
+                    {
+                        salePriceISValid = true;
+                    }
+                }
+
+                while (orderPriceIsValid != true)
+                {
+                    Write("\n  Order Price: ");
+                    string orderPriceInput = ReadLine();
+
+                    if (!int.TryParse(orderPriceInput, out orderPrice))
+                    {
+                        WriteLine("\n\n  Input was either null or not an integer. Try again.\n");
+                    }
+                    else
+                    {
+                        orderPriceIsValid = true;
+                    }
+                }
+
+                while (storageLocationIsvalid != true)
+                {
+                    Write("\n  Storage Location: ");
+                    storageLocation = ReadLine();
+                    
+                    if (string.IsNullOrEmpty(storageLocation))
+                    {
+                        WriteLine("\n\n  Storage Location cant be null. Try again\n ");
+                    }
+                    else
+                    {
+                        storageLocationIsvalid = true;
+                    }
+                }
+
+                // this statement only executes if all the conditions are true. Meaning that we have already checked if all input is valid. 
+                // All the valid input will then be inserted into the table.
+
+                if (numberIsValid == true && nameIsValid == true && quantityIsValid == true && salePriceISValid == true && orderPriceIsValid == true && storageLocationIsvalid == true)
+                {               
+                    dbCommand = new SQLiteCommand("INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values ('" + productNumber + "','" + name + "','" + quantity + "','" + salePrice + "','" + orderPrice + "','" + storageLocation + "')", dbConnection);
+                    dbCommand.ExecuteNonQuery();
+
+                    allInputIsValid = true;
+                }
+
+            }
+
+                dbConnection.Close();       
         }
 
         public void EditRow()
         {
+            // Selects a row using the table id, shows the selected row, asks you to enter in the new values and sets the new values
+
             dbConnection.Open();
             
             Write("\n\n\n  Type the ID of the product that you wish to Edit: ");
             int productEditSelection = Convert.ToInt32(ReadLine());
 
             Clear();
-            TAH.SelectedRow();
+            SelectedRow.HeaderText();
       
             string productHeaders = string.Format(
                       "\n  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |\n\n",
@@ -244,9 +375,9 @@ namespace H1_ERP_System
             dbReader = dbCommand.ExecuteReader();
 
             while (dbReader.Read())
-                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);                       
-            
-            TAH.EditRow();
+                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);
+
+            SelectedRowEdit.HeaderText();
 
             Write("  Product Number: ");
             int productNumber = Convert.ToInt32(ReadLine());
@@ -268,8 +399,10 @@ namespace H1_ERP_System
             dbConnection.Close();
         }
 
-        public void DeleteRowByID()
+        public void DeleteRow()
         {
+            // Simply deletes the row using the ID of the row that you need removed
+
             dbConnection.Open();
 
             Write("\n\n  Select the ID of the row in the products table that you wish to remove: ");
@@ -281,40 +414,105 @@ namespace H1_ERP_System
             dbConnection.Close();
         }
 
-        public void InsertRowToAnotherTable()
+        public void InsertRowFromVendorProductsToProducts()
         {
+            // Uses the vendorproductID to copy to the selected row over to the products table and gives it a new ID 
+
             dbConnection.Open();
 
             Write("\n\n  Select the ID of the product that you wish to purchase: \n\n ");
             int idProductOrder = Convert.ToInt32(ReadLine());
 
-            dbCommand = new SQLiteCommand("INSERT INTO Products (Product_Number, Product_Name, Product_Price_Order) SELECT VenProduct_Number, VenProduct_Name, VenProduct_Price_Order FROM VendorProducts WHERE VendorProductID=" + idProductOrder + "", dbConnection);
+            dbCommand = new SQLiteCommand("INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Order) SELECT VenProduct_Number, VenProduct_Name, VenProduct_Quantity, VenProduct_Price_Order FROM VendorProducts WHERE VendorProductID=" + idProductOrder + "", dbConnection);
             dbCommand.ExecuteNonQuery();
 
             dbConnection.Close();
         }
 
-        public void SearchForObject()
+        public void Search()
         {
+            // Search the products table using product_Number or Product_Name (LIKE '%<something>%') and display results
+
             dbConnection.Open();
 
-                Write("\n\n  [SEARCH] Product Name: ");
-                string productsNameSearch = ReadLine();
-                Clear();
+            bool validSearchinput = false;
+            bool validNumericSearch = false;
+            string searchText;
+            int searchNumeric = -1;
 
-            TAH.SearchHeader();
+            while (validSearchinput != true)
+            {
+                int searchBy = 0;
+              
+                WriteLine("\n\n Search by product number or name?\n\n 1. Search by product number\n 2. Search by name");
+                searchBy = Convert.ToInt32(ReadLine());
+                
+                  if (searchBy == 1)
+                {
 
-            WriteLine("\n                                         Query: SELECT * FROM Products WHERE Product_Name LIKE '%<UserInput>%'\n\n");
+                    while (validNumericSearch != true)
+                    {
+                        Write("\n\n  Product Number: ");
+                        string searchNumericString = ReadLine();
 
-            string readTables = "SELECT * FROM Products WHERE Product_Name LIKE '%" + productsNameSearch + "%'";
-            dbCommand = new SQLiteCommand(readTables, dbConnection);
-            dbReader = dbCommand.ExecuteReader();
+                        if (!int.TryParse(searchNumericString, out searchNumeric))
+                        {
+                            WriteLine("\n\n  Input was either null or not an integer. Try again.\n");
+                        }
+                        else
+                        {
+                            Clear();
+                            SearchHeader.HeaderText();
+                            WriteLine("\n                                         Query: SELECT * FROM Products WHERE Product_Number LIKE '%<UserInput>%'\n\n");
 
-            while (dbReader.Read())
-            WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);
+                            string readTables = "SELECT * FROM Products WHERE Product_Number LIKE '%" + searchNumeric + "%'";
+                            dbCommand = new SQLiteCommand(readTables, dbConnection);
+                            dbReader = dbCommand.ExecuteReader();
 
-            TAH.KeyToReturnFooter();
-            ReadKey();
+
+                            while (dbReader.Read())
+                                WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);
+
+                            ReturnFooter.HeaderText();
+                            ReadKey();
+
+                            validNumericSearch = true;
+                            validSearchinput = true;
+                        }
+                    }
+
+                }
+                        
+                  else if (searchBy == 2)
+                {
+                    Write("\n\n  Product Name: ");
+                    searchText = ReadLine();
+
+                    Clear();
+                    SearchHeader.HeaderText();
+                    WriteLine("\n                                         Query: SELECT * FROM Products WHERE Product_Name LIKE '%<UserInput>%'\n\n");
+
+                    string readTables2 = "SELECT * FROM Products WHERE Product_Name LIKE '%" + searchText + "%'";
+                    dbCommand = new SQLiteCommand(readTables2, dbConnection);
+                    dbReader = dbCommand.ExecuteReader();
+
+                    while (dbReader.Read())
+                        WriteLine("  {0,12} |  {1,17} |  {2,22} |  {3,12} |  {4,12} |  {5,12} |  {6,16} |", dbReader["ProductID"], dbReader["Product_Number"], dbReader["Product_Name"], dbReader["Product_Quantity"], dbReader["Product_Price_Sale"] + " $", dbReader["Product_Price_Order"] + " $", dbReader["Product_StorageArea"]);
+
+                    ReturnFooter.HeaderText();
+                    ReadKey();
+
+                    validSearchinput = true;
+                }
+            
+                  else
+                {
+                    WriteLine("Please enter a valid input. Press any key to try again");
+                    ReadKey();
+                }                   
+                       
+            }
+              
 
             dbConnection.Close();
         }
@@ -323,6 +521,8 @@ namespace H1_ERP_System
 
 
         #region Direct SQL Queries
+
+        // Dangerzone By Kenny Loggins
 
         public void DirectQuery()
         {
@@ -361,7 +561,7 @@ namespace H1_ERP_System
                     WriteLine("");
                     
                 }
-                TAH.KeyToReturnFooter();
+                ReturnFooter.HeaderText();
                 ReadKey();
             
 
@@ -370,12 +570,13 @@ namespace H1_ERP_System
 
         #endregion
 
-
+        
         #region Left join demo
 
         public void ExamplesSQL()
         {
             dbConnection.Open();
+
             string myJoinQuery = "SELECT ContactID, Contact_Email, Contact_PhoneNr FROM Contacts INNER JOIN Persons ON Contacts.ContactID = Persons.ContactID";
             Clear();
 
@@ -409,7 +610,7 @@ namespace H1_ERP_System
                 WriteLine("");
 
             }
-            TAH.KeyToReturnFooter();
+            ReturnFooter.HeaderText();
             ReadKey();
 
             dbConnection.Close();

@@ -8,25 +8,143 @@
     </TypeIdentifier>
   </Class>
   <Class Name="H1_ERP_System.Logger">
-    <Position X="0.5" Y="2" Width="3.25" />
+    <Position X="4.25" Y="8.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>ERP_Logs\Logger.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="H1_ERP_System.MainInterface">
+  <Class Name="H1_ERP_System.PlanetTools_Database">
     <Position X="4.25" Y="0.5" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAEAAAQAAAAAABAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ERP_UserInterface\MainInterface.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="H1_ERP_System.PlanetTools_Database">
-    <Position X="8" Y="0.5" Width="3.25" />
-    <TypeIdentifier>
-      <HashCode>IAAAAEACEAAAAAAAIAAAAEAEAhAoAAAAAAAAQAAAAAA=</HashCode>
+      <HashCode>JABCAECCEFAAAIIAKCAAAAAEggAoAAAAAAAAAEEkGEE=</HashCode>
       <FileName>ERP_Database\PlanetTools_Database.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="H1_ERP_System.Header">
+    <Position X="13.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\Header.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.Login">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\Header.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.SearchResult">
+    <Position X="17.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\Header.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.KeyToReturnFooter">
+    <Position X="8.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\Header.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.SelectedRow">
+    <Position X="15" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\Header.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.EditRow">
+    <Position X="19.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\Header.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.AlterOrderedRow">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\Header.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.Products" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\ITableHeaders.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="H1_ERP_System.VendorProducts" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\ITableHeaders.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="H1_ERP_System.Clients" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\ITableHeaders.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="H1_ERP_System.Addresses" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\ITableHeaders.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="H1_ERP_System.Persons" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\ITableHeaders.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="H1_ERP_System.Contacts" BaseTypeListCollapsed="true">
+    <Position X="15" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\ITableHeaders.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="H1_ERP_System.ERP_Engine">
+    <Position X="0.5" Y="2" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>QAAAAQAAACAAAABgAAAAgAAAgAAAAAAAAAAAGAAAAAA=</HashCode>
+      <FileName>ERP_System\ERP_Engine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.LoginModule">
+    <Position X="0.5" Y="5.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>ERP_Login\LoginModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="H1_ERP_System.Text">
+    <Position X="0.5" Y="8" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAEAAAAAAAAAAAAAAAAAAAAAAAAgAAAACAA=</HashCode>
+      <FileName>ERP_TextForUser\Text.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="H1_ERP_System.ITableHeaders">
+    <Position X="14" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ERP_OOP\ITableHeaders.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

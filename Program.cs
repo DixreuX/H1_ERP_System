@@ -7,9 +7,9 @@ namespace H1_ERP_System
     {
         static void Main(string[] args)
         {
-
             SetWindowPosition(0, 0);
             SetWindowSize(142, 48);
+            CursorVisible = false;
 
             //Logger.Info("Programmet er startet");
             //Logger.Info("New Line virker");
@@ -25,9 +25,7 @@ namespace H1_ERP_System
             //    Logger.Error(e.Message + "\n" + e.StackTrace);
             //}
 
-            MainInterface MI = new MainInterface();
-
-            
+            ERP_Engine StartEngine = new ERP_Engine();
         }
     }
 }

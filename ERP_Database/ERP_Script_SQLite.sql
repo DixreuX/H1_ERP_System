@@ -11,6 +11,7 @@ CREATE TABLE VendorProducts (
 VendorProductID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
 VenProduct_Number INTEGER, 
 VenProduct_Name NVCHAR(20), 
+VenProduct_Quantity INTEGER,
 VenProduct_Price_Order INTEGER );							  
 
 CREATE TABLE Persons ( 
@@ -64,11 +65,11 @@ INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Pr
 INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (4123, 'Hammer', 142, 19, 9, '4B');
 INSERT INTO Products (Product_Number, Product_Name, Product_Quantity, Product_Price_Sale, Product_Price_Order, Product_StorageArea) values (333, 'Markers', 100, 9, 4, '8K');			
 
-INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Price_Order) values (23, 'Duct Tape', 10);
-INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Price_Order) values (613, 'Scotch Tape', 7);
-INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Price_Order) values (3242, 'Safety Vest', 25);
-INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Price_Order) values (23, 'Super Glue', 5);
-INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Price_Order) values (233212, 'Bit Set', 29);
+INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Quantity, VenProduct_Price_Order) values (23, 'Duct Tape',1000, 10);
+INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Quantity, VenProduct_Price_Order) values (613, 'Scotch Tape',1000, 7);
+INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Quantity, VenProduct_Price_Order) values (3242, 'Safety Vest',100, 25);
+INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Quantity, VenProduct_Price_Order) values (23, 'Super Glue',400, 5);
+INSERT INTO VendorProducts (VenProduct_Number, VenProduct_Name, VenProduct_Quantity, VenProduct_Price_Order) values (233212, 'Bit Set', 80, 29);
 
 INSERT INTO Persons (Person_Firstname, Person_Lastname) values ('Danny', 'Frandsen');
 INSERT INTO Persons (Person_Firstname, Person_Lastname) values ('Testy', 'McTesterson');
